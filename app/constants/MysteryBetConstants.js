@@ -6,17 +6,14 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * TodoConstants
+ * MysteryBetConstants
  */
 
 import keyMirror from 'keymirror';
 
 export default keyMirror({
-  TODO_CREATE: null,
-  TODO_COMPLETE: null,
-  TODO_DESTROY: null,
-  TODO_DESTROY_COMPLETED: null,
-  TODO_TOGGLE_COMPLETE_ALL: null,
-  TODO_UNDO_COMPLETE: null,
-  TODO_UPDATE_TEXT: null
+    MYSTERYBET_UPDATE_INVESTMENT: null,
+    MYSTERYBET_UPDATE_BETTYPE: null,
+    MYSTERYBET_UPDATE_OPTION: null,
+    MYSTERYBET_UPDATE_NUMBEROFBETS: null
 });

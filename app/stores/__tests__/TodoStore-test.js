@@ -6,33 +6,33 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * TodoStore-test
+ * MysteryBetStore-test
  */
 
-jest.dontMock('../../constants/TodoConstants');
-jest.dontMock('../TodoStore');
+jest.dontMock('../../constants/MysteryBetConstants');
+jest.dontMock('../MysteryBetStore');
 jest.dontMock('object-assign');
 
-describe('TodoStore', function() {
+describe('MysteryBetStore', function() {
 
-  var TodoConstants = require('../../constants/TodoConstants');
+  var MysteryBetConstants = require('../../constants/MysteryBetConstants');
   var AppDispatcher;
-  var TodoStore;
+  var MysteryBetStore;
   var callback;
 
   // mock actions
-  var actionTodoCreate = {
-    actionType: TodoConstants.TODO_CREATE,
+  var actionMysteryBetCreate = {
+    actionType: MysteryBetConstants.TODO_CREATE,
     text: 'foo'
   };
-  var actionTodoDestroy = {
-    actionType: TodoConstants.TODO_DESTROY,
+  var actionMysteryBetDestroy = {
+    actionType: MysteryBetConstants.TODO_DESTROY,
     id: 'replace me in test'
   };
 
   beforeEach(function() {
     AppDispatcher = require('../../dispatcher/AppDispatcher');
-    TodoStore = require('../TodoStore');
+    MysteryBetStore = require('../MysteryBetStore');
     callback = AppDispatcher.register.mock.calls[0][0];
   });
 
@@ -41,50 +41,50 @@ describe('TodoStore', function() {
   });
 
   it('should initialize with no to-do items', function() {
-    var all = TodoStore.getAll();
+    var all = MysteryBetStore.getAll();
     expect(all).toEqual({});
   });
 
   it('creates a to-do item', function() {
-    callback(actionTodoCreate);
-    var all = TodoStore.getAll();
+    callback(actionMysteryBetCreate);
+    var all = MysteryBetStore.getAll();
     var keys = Object.keys(all);
     expect(keys.length).toBe(1);
     expect(all[keys[0]].text).toEqual('foo');
   });
 
   it('destroys a to-do item', function() {
-    callback(actionTodoCreate);
-    var all = TodoStore.getAll();
+    callback(actionMysteryBetCreate);
+    var all = MysteryBetStore.getAll();
     var keys = Object.keys(all);
     expect(keys.length).toBe(1);
-    actionTodoDestroy.id = keys[0];
-    callback(actionTodoDestroy);
+    actionMysteryBetDestroy.id = keys[0];
+    callback(actionMysteryBetDestroy);
     expect(all[keys[0]]).toBeUndefined();
   });
 
   it('can determine whether all to-do items are complete', function() {
     var i = 0;
     for (; i < 3; i++) {
-      callback(actionTodoCreate);
+      callback(actionMysteryBetCreate);
     }
-    expect(Object.keys(TodoStore.getAll()).length).toBe(3);
-    expect(TodoStore.areAllComplete()).toBe(false);
+    expect(Object.keys(MysteryBetStore.getAll()).length).toBe(3);
+    expect(MysteryBetStore.areAllComplete()).toBe(false);
 
-    var all = TodoStore.getAll();
+    var all = MysteryBetStore.getAll();
     for (key in all) {
       callback({
-        actionType: TodoConstants.TODO_COMPLETE,
+        actionType: MysteryBetConstants.TODO_COMPLETE,
         id: key
       });
     }
-    expect(TodoStore.areAllComplete()).toBe(true);
+    expect(MysteryBetStore.areAllComplete()).toBe(true);
 
     callback({
-      actionType: TodoConstants.TODO_UNDO_COMPLETE,
+      actionType: MysteryBetConstants.TODO_UNDO_COMPLETE,
       id: key
     });
-    expect(TodoStore.areAllComplete()).toBe(false);
+    expect(MysteryBetStore.areAllComplete()).toBe(false);
   });
 
 });

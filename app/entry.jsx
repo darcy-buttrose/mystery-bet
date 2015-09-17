@@ -8,9 +8,9 @@
  */
 
 import React from 'react';
-import TodoApp from './components/TodoApp.react';
+import MysteryBetApp from './components/MysteryBetApp.react';
 
 React.render(
-  <TodoApp/>,
+  <MysteryBetApp/>,
   document.getElementById('content')
 );
